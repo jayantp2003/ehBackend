@@ -1,13 +1,14 @@
 {
   "name": "ehbackend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend server for your application",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Your Name",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.2",
