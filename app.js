@@ -20,6 +20,7 @@ app.use(cors());
 
 const postsRouter = require('./routes/posts');
 app.use('/posts', postsRouter);
+app.use('/auth', require('./routes/auth'));
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,

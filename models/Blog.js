@@ -1,10 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const blogPostSchema = new mongoose.Schema({
   title: String,
   content: String,
   summary: String,
-  createdAt: { type: Date, default: Date.now }
+  author: { type: String }, // stores the email of the user who created the post
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Blog', blogPostSchema);
+module.exports = mongoose.model("Blog", blogPostSchema);
