@@ -129,21 +129,32 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     console.log("Deleting post:", req.params.id);
+
+    // Find the post by ID
     const post = await BlogPost.findById(req.params.id);
     if (!post) {
       return res.status(404).send("Blog post not found");
     }
     console.log("Post found:", post);
-    const author = User.findOne({ email: post.author });
+
+    // Find the author of the post
+    const author = await User.findOne({ email: post.author });
     if (author) {
+      console.log("Author found:", author);
       author.posts.pull(post._id);
       await author.save();
+    } else {
+      console.log("Author not found");
     }
+
+    // Delete the post
     await BlogPost.findByIdAndDelete(req.params.id);
     res.status(204).send();
   } catch (error) {
-    res.status(500).send(error);
+    console.error("Error deleting post:", error);
+    res.status(500).send("An error occurred while deleting the post.");
   }
 });
+
 
 module.exports = router;
